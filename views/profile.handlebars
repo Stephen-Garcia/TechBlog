@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-auto mx-2 mt-3">
+    <h2>Welcome, {{ username }}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4 p-2 border border-3">
+  <div class="col-md-6">
+    <h3>Create a New Blog:</h3>
+
+    <form class="form new-blog-form">
+      <div class="form-group">
+        <label for="blog-title">Blog name:</label>
+        </br>
+        <input class="form-input" type="text" id="blog-title" name="blog-name" />
+      </div>
+      <div class="form-group">
+        <label for="blog-content">Description:</label>
+        </br>
+        <textarea class="form-input long-input" id="blog-content" name="blog-content"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="addBlogBtn">Create</button>
+        <hr class="divider">
+        </br>
+      </div>
+    </form>
+  </div>
+
+  {{#if blogs.length}}
+  <div class="col-md-6 blog-list">
+    <h3>Your Current Blogs:</h3>
+
+    {{#each blogs as |blog|}}
+    <div class="card mt-2 p-3">
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a class="text-decoration-underline" href="/blog/{{ blog.id }}">{{ blog.title }}</a></h4>
+        </div>
+        <p class="text-dark">{{ blog.content }}</p>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-info m-1"><a class="text-decoration-none text-white" id="targetBlog" data-id="{{ blog.id }}" href="/blog/edit/{{ blog.id }}">Edit</a></button>
+          <button name="deleteBlogBtn" class="btn btn-sm btn-danger m-1 deleteBlogBtn" data-id="{{ blog.id }}">Delete</button>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <button class="btn btn-outline-dark me-2 p-1 mt-1"><a class="text-decoration-none text-white" href="#top">Back to top</a></button>
+</div>
+
+<script src="/js/profile.js"></script>
